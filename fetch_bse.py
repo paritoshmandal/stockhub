@@ -1,7 +1,6 @@
-"""BSE theke announcements, result PDF ar upcoming board meeting tane,
-results.json + announcements.json banay (app.js ei format-e pore)."""
 import json, time, datetime as dt
 import requests
+from parse_pdf import parse_url
 
 API = "https://api.bseindia.com/BseIndiaAPI/api/"
 PDF = "https://www.bseindia.com/xml-data/corpfiling/AttachLive/"
@@ -86,7 +85,15 @@ for r in (j if isinstance(j, list) else (j or {}).get("Table") or []):
         upcoming.append([date, name, purpose])
 upcoming.sort(key=lambda x: x[0])
 
-# 3) Results (last 30 din, company-wise latest PDF)
+# 3) Results (last 30 din) + PDF theke numbers
+old = {}
+try:
+    for c in json.load(open("results.json", encoding="utf-8")).get("companies", []):
+        if c.get("u"):
+            old[c["u"]] = c
+except Exception:
+    pass
+
 seen = {}
 for r in ann_pages("Result", 30, 40):
     name = r.get("SLONGNAME") or ""
@@ -94,8 +101,29 @@ for r in ann_pages("Result", 30, 40):
     if name and (name not in seen or d > seen[name]["d"]):
         seen[name] = {"d": d, "n": name, "u": pdf_url(r)}
 companies = sorted(seen.values(), key=lambda x: x["d"], reverse=True)
+
+budget = 40  # ek run-e max 40 ti notun PDF parse
 for c in companies:
-    c.pop("d")  # numbers (cols/s/e/np/eps) XBRL parse korle pore jog hobe
+    prev = old.get(c["u"])
+    if prev and prev.get("s"):
+        for k in ("cols", "s", "e", "np", "eps"):
+            if k in prev:
+                c[k] = prev[k]
+        continue
+    if budget <= 0 or not c["u"]:
+        continue
+    budget -= 1
+    try:
+        res = parse_url(c["u"], S)
+        if res:
+            c.update(res)
+        else:
+            print("parse hoyni:", c["n"])
+    except Exception as e:
+        print("pdf fail:", c["n"], e)
+    time.sleep(1)
+for c in companies:
+    c.pop("d", None)
 
 stamp = NOW.strftime("%d %b %Y, %I:%M %p IST")
 json.dump({"updated": stamp, "companies": companies},
