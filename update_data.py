@@ -126,6 +126,12 @@ def main():
         rows = nse_get("/api/corporates-financial-results", {"index": "equities", "period": "Quarterly"})
     except Exception as e:
         rows = []; warns.append(f"Results list: {e}")
+    print("DEBUG results type:", type(rows).__name__, "| count:", len(rows) if hasattr(rows, "__len__") else "-")
+    if isinstance(rows, list) and rows:
+        print("DEBUG first row keys:", list(rows[0].keys())[:25])
+        print("DEBUG first row sample:", {k: rows[0][k] for k in list(rows[0].keys())[:8]})
+    elif isinstance(rows, dict):
+        print("DEBUG dict keys:", list(rows.keys())[:20])
     latest = {}
     cutoff = TODAY - dt.timedelta(days=RESULT_DAYS)
     for x in rows if isinstance(rows, list) else []:
@@ -200,4 +206,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-                
+    
