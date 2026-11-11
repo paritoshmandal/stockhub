@@ -204,6 +204,62 @@
  "items": [
   {
    "d": "Today",
+   "c": "CUPID",
+   "k": "Investor Meet",
+   "t": "General Updates",
+   "s": "Cupid Limited has informed the Exchange about Investor Presentation Q2 and H1 FY 27",
+   "u": "https://nsearchives.nseindia.com/corporate/CUPID_11112026203934_SE_Intimation_Investor_Presentation_Q2H1FY27.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "TATAPOWER",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Tata Power Company Limited has informed the Exchange about Link of Recording",
+   "u": "https://nsearchives.nseindia.com/corporate/VPTPCL_11112026203424_Analyst_Call.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "AFSL",
+   "k": "Result",
+   "t": "Outcome of Board Meeting",
+   "s": "Abans Financial Services Limited has submitted to the Exchange, the financial results for the quarter and half year ended September 30, 2026.",
+   "u": "https://nsearchives.nseindia.com/corporate/AHL_11112026203244_Outcome_FR_11-11-2026.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "SETL",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Standard Engineering Technology Limited has informed the Exchange about Schedule of meet",
+   "u": "https://nsearchives.nseindia.com/corporate/SGLTPL_11112026203326_Investor_conference_Intimation_SETL_11112026_F.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "INTENTECH",
+   "k": "Other",
+   "t": "Resignation of Director/KMP/SMP",
+   "s": "Intense Technologies Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "u": "https://nsearchives.nseindia.com/corporate/INTENTECH_ROID_104621_KMP_Doc.zip"
+  },
+  {
+   "d": "Today",
+   "c": "SAMMAANCAP",
+   "k": "Other",
+   "t": "Updates",
+   "s": "Sammaan Capital Limited has informed the Exchange regarding 'Pursuant to Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations",
+   "u": "https://nsearchives.nseindia.com/corporate/IHFL_11112026203208_SCL_Investor_Meet_Intimation_Avendus_11Nov2026.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "AUROPHARMA",
+   "k": "Other",
+   "t": "General Updates",
+   "s": "Aurobindo Pharma Limited has informed the Exchange about Classification of US FDA Inspection at Lannett Company LLC, a wholly owned subsidiary of Aurobindo Phar",
+   "u": "https://nsearchives.nseindia.com/corporate/AUROPHARMA_11112026203007_LtrToSEsLannetUSFDA11112026.pdf"
+  },
+  {
+   "d": "Today",
    "c": "PDSL",
    "k": "Earnings Call",
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
@@ -2545,62 +2601,6 @@
    "t": "Press Release",
    "s": "TVS Motor Company Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"TVS MOTOR EXPANDS ITS GLOBAL PORTFOLIO WITH TVS C",
    "u": "https://nsearchives.nseindia.com/corporate/TVSMOTOR_11112026151336_NSEBSECallisto110inturkey.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "AGARWALEYE",
-   "k": "Result",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Transcript of the Discussion held on the Unaudited Financial Results (Consolidated & Standalone) of the Company for the quarter and half year ended September 30",
-   "u": "https://nsearchives.nseindia.com/corporate/DRAGARWALS_11112026151449_C056_Transcript_SE.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "AFFLE",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Affle 3i Limited has informed the Exchange about Schedule of meet",
-   "u": "https://nsearchives.nseindia.com/corporate/AFFLE_11112026151144_IntimationofAnalystInvestorMeetings_11112026.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "VASCONEQ",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Vascon Engineers Limited has informed the Exchange about Transcript",
-   "u": "https://nsearchives.nseindia.com/corporate/VASCONEQ_11112026151257_ConcallTranscript_Sd.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "KOTAKBANK",
-   "k": "Other",
-   "t": "ESOP/ESOS/ESPS",
-   "s": "Kotak Mahindra Bank Limited has informed the Exchange regarding allotment of 467180  Equity Shares.",
-   "u": "https://nsearchives.nseindia.com/corporate/KMBLOMKAR_11112026150402_Intimation_Allotment_of_Equity_Shares_under_ESOP_Schemes.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "RAMCOIND",
-   "k": "Other",
-   "t": "Pendency of Litigation(s)/dispute(s) or the outcome impacting the Company",
-   "s": "Ramco Industries Limited has informed the Exchange about Pendency of Litigation(s)/dispute(s) or the outcome impacting the Company",
-   "u": "https://nsearchives.nseindia.com/corporate/RAMCOIND_11112026150745_Reply_to_BSE_Query_09112026.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "APOLLOTYRE",
-   "k": "Investor Meet",
-   "t": "General Updates",
-   "s": "Apollo Tyres Limited has informed the Exchange about schedule of  Investor Conference  in which the Company will participate.",
-   "u": "https://nsearchives.nseindia.com/corporate/APOLLOTYRE1_11112026150926_INVESTORCALLINTIMATION.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "GAJA",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Gaja Alternative Asset Management Limited has informed the Exchange about Transcript",
-   "u": "https://nsearchives.nseindia.com/corporate/GAAML2025_11112026150527_GAJACS392026-27.pdf"
   }
  ]
 }
