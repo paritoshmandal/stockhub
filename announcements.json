@@ -204,6 +204,30 @@
  "items": [
   {
    "d": "Today",
+   "c": "NRL",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Nupur Recyclers Limited has informed the Exchange about Schedule of meet",
+   "u": "https://nsearchives.nseindia.com/corporate/NUPURRECYCLERS_11112026195558_Final_intimation.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "SEPC",
+   "k": "Result",
+   "t": "Outcome of Board Meeting",
+   "s": "We herewith enclose the Unaudited Standalone and Consolidated Financial Results for the quarter and half-year ended September 30, 2026. Detailed letter is enclo",
+   "u": "https://nsearchives.nseindia.com/corporate/SHRIRAMEPC_11112026195344_OUTCOME_OF_BM_11NOV2026_UNAUDITED_FINANCIAL_RESULTS_sd.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "GOKEX",
+   "k": "Other",
+   "t": "Press Release",
+   "s": "Gokaldas Exports Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"Recent Customer Filing and Highlights on New Custo",
+   "u": "https://nsearchives.nseindia.com/corporate/GOKEX_11112026195551_pressrelease.pdf"
+  },
+  {
+   "d": "Today",
    "c": "CAPILLARY",
    "k": "Earnings Call",
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
@@ -337,30 +361,6 @@
    "t": "Retirement",
    "s": "Tata Investment Corporation Limited has informed the Exchange about Retirement of Mr. Noel N Tata as the Chairman",
    "u": "https://nsearchives.nseindia.com/corporate/TATAINVEST_11112026192338_SE_Int_Directors_-_Final.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "DCXINDIA",
-   "k": "Investor Meet",
-   "t": "Updates",
-   "s": "Dcx Systems Limited has informed the Exchange regarding 'Investor Presentation '.",
-   "u": "https://nsearchives.nseindia.com/corporate/DCX_2022_11112026192329_CoveringLetter_InvestorPresentation.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "PVSL",
-   "k": "Other",
-   "t": "General Updates",
-   "s": "Popular Vehicles and Services Limited has informed the Exchange about General Updates: Pursuant to Regulation 30 of the SEBI (Listing Obligations and Disclosure",
-   "u": "https://nsearchives.nseindia.com/corporate/9072530155_11112026191820_Re-compositionofCommitteeSD.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TATAPOWER",
-   "k": "Other",
-   "t": "Updates",
-   "s": "Tata Power Company Limited has informed the Exchange regarding 'Reg 30 Change in Management'.",
-   "u": "https://nsearchives.nseindia.com/corporate/VPTPCL_11112026192204_Regulation_30_KMP.pdf"
   }
  ]
 }
