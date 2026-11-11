@@ -1,40 +1,45 @@
-"""StockHub robot v3: all BSE companies, with a browser-like BSE session.
-- results.json: companies that announced results in the last 3 days (+ your watchlist), numbers from yfinance
-- announcements.json: latest company updates/corporate actions + upcoming result meetings
-Source: BSE public announcements API (unofficial; BSE may change it). Numbers: yfinance (unofficial)."""
-import json, os, re, time, datetime as dt
-from urllib.parse import quote_plus
+"""StockHub robot v4: NSE-based announcements/results/board meetings (browser-like session).
+- results.json: companies with results in the last 3 days (+ watchlist), numbers from yfinance
+- announcements.json: latest corporate announcements + upcoming result meetings
+Source: NSE public API (unofficial). Numbers: yfinance (unofficial)."""
+import json, os, time, datetime as dt
 import requests
 
 NOW = dt.datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 TODAY = NOW.date()
 CR = 1e7
-RESULT_DAYS, MAX_RESULT_CARDS, ANN_DAYS, MAX_ANN = 3, 80, 2, 300
+RESULT_DAYS, MAX_RESULT_CARDS, MAX_ANN = 3, 80, 300
 BASE = os.path.dirname(os.path.abspath(__file__))
-MON = {m: i + 1 for i, m in enumerate("jan feb mar apr may jun jul aug sep oct nov dec".split())}
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
-SESSION = requests.Session()
-SESSION.headers.update({
+S = requests.Session()
+S.headers.update({
     "User-Agent": UA,
-    "Accept": "application/json, text/plain, */*",
+    "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.9",
-    "Origin": "https://www.bseindia.com",
-    "Referer": "https://www.bseindia.com/corporates/ann.html",
-    "sec-fetch-site": "same-site",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-dest": "empty",
+    "Referer": "https://www.nseindia.com/",
 })
 
 def warmup():
-    """Visit BSE pages first so the server sets cookies, like a real browser."""
-    for url in ("https://www.bseindia.com/", "https://www.bseindia.com/corporates/ann.html"):
+    for url in ("https://www.nseindia.com/", "https://www.nseindia.com/companies-listing/corporate-filings-announcements"):
         try:
-            r = SESSION.get(url, timeout=30, headers={"Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
-            print("warmup", url, r.status_code, len(SESSION.cookies), "cookies")
+            r = S.get(url, timeout=30, headers={"Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
+            print("warmup", url, r.status_code, len(S.cookies), "cookies")
         except Exception as e:
             print("WARN warmup", url, e)
         time.sleep(2)
+
+def nse_get(path, params):
+    last = None
+    for attempt in range(2):
+        try:
+            r = S.get("https://www.nseindia.com" + path, params=params, timeout=40)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last = e
+            time.sleep(3)
+    raise last
 
 def load(name, default):
     try:
@@ -47,29 +52,14 @@ def save(name, obj):
     with open(os.path.join(BASE, name), "w", encoding="utf8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=1)
 
-def bse_get(cat, d1, d2):
-    url = ("https://api.bseindia.com/BseIndiaAPI/api/AnnGetData/w?strCat=" + quote_plus(cat) +
-           f"&strPrevDate={d1}&strScrip=&strSearch=P&strToDate={d2}&strType=C")
-    last = None
-    for attempt in range(2):
+def parse_date(s):
+    s = (s or "").strip()
+    for n, fmt in ((10, "%Y-%m-%d"), (10, "%d-%m-%Y"), (11, "%d-%b-%Y"), (10, "%d-%b-%Y")):
         try:
-            r = SESSION.get(url, timeout=40)
-            r.raise_for_status()
-            return r.json().get("Table", [])
-        except Exception as e:
-            last = e
-            time.sleep(3)
-    raise last
-
-def ymd(d): return d.strftime("%Y%m%d")
-
-def row(x):
-    att = x.get("ATTACHMENTNAME")
-    return {"code": str(x.get("SCRIP_CD") or ""), "name": (x.get("SLONGNAME") or "").strip(),
-            "date": (x.get("NEWS_DT") or "")[:10],
-            "head": (x.get("HEADLINE") or x.get("NEWSSUB") or "").strip(),
-            "sub": (x.get("SUBCATNAME") or x.get("CATEGORYNAME") or "").strip(),
-            "pdf": ("https://www.bseindia.com/xml-data/corpfiling/AttachLive/" + att) if att else ""}
+            return dt.datetime.strptime(s[:n], fmt).date()
+        except Exception:
+            pass
+    return None
 
 def kind(text):
     t = text.lower()
@@ -78,21 +68,6 @@ def kind(text):
     if "transcript" in t or "earnings call" in t or "con. call" in t: return "Earnings Call"
     if "analyst" in t or "investor" in t: return "Investor Meet"
     return "Other"
-
-def find_dates(text):
-    out = []
-    for d, m, y in re.findall(r"(\d{1,2})[/\-.](\d{1,2})[/\-.](20\d{2})", text):
-        try: out.append(dt.date(int(y), int(m), int(d)))
-        except ValueError: pass
-    for d, m, y in re.findall(r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]{3,9})[,\s]+(20\d{2})", text):
-        if m[:3].lower() in MON:
-            try: out.append(dt.date(int(y), MON[m[:3].lower()], int(d)))
-            except ValueError: pass
-    for m, d, y in re.findall(r"([A-Za-z]{3,9})\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})", text):
-        if m[:3].lower() in MON:
-            try: out.append(dt.date(int(y), MON[m[:3].lower()], int(d)))
-            except ValueError: pass
-    return out
 
 def pick(df, names):
     for n in names:
@@ -146,29 +121,30 @@ def main():
     comps = load("companies.json", [])
     cards, seen = [], set()
 
-    # recent results, all companies
+    # 1. recent results (NSE financial results list)
+    try:
+        rows = nse_get("/api/corporates-financial-results", {"index": "equities", "period": "Quarterly"})
+    except Exception as e:
+        rows = []; warns.append(f"Results list: {e}")
     latest = {}
-    for i in range(RESULT_DAYS):
-        d = TODAY - dt.timedelta(days=i)
+    cutoff = TODAY - dt.timedelta(days=RESULT_DAYS)
+    for x in rows if isinstance(rows, list) else []:
+        sym = (x.get("symbol") or "").strip()
+        rd = parse_date(x.get("broadCastDate") or x.get("toDate") or "")
+        if not sym or (rd and rd < cutoff): continue
+        if sym not in latest:
+            latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(), "rd": rd,
+                           "u": x.get("attchmntFile") or ""}
+    for r in list(latest.values())[:MAX_RESULT_CARDS]:
         try:
-            for x in bse_get("Result", ymd(d), ymd(d)):
-                r = row(x)
-                if r["code"] and r["code"] not in latest: latest[r["code"]] = r
-        except Exception as e:
-            warns.append(f"Result {d}: {e}")
-    todo = list(latest.values())[:MAX_RESULT_CARDS]
-    for r in todo:
-        try: rd = dt.date.fromisoformat(r["date"])
-        except Exception: rd = None
-        try:
-            card = fetch_result(r["code"] + ".BO", r["name"], rd)
+            card = fetch_result(r["sym"] + ".NS", r["name"], r["rd"])
         except Exception as e:
             warns.append(f"{r['name']}: {e}"); card = {"n": r["name"], "p": None, "m": None, "pe": None}
-        card["u"] = r["pdf"]; card["rd"] = r["date"]
+        card["u"] = r["u"]; card["rd"] = str(r["rd"] or "")
         cards.append(card); seen.add(r["name"])
         time.sleep(0.5)
 
-    # watchlist (always shown with numbers)
+    # 2. watchlist (always shown)
     for c in comps:
         if c.get("nse") and c["name"] not in seen:
             try:
@@ -183,38 +159,38 @@ def main():
     if cards:
         save("results.json", {"cols": [], "updated": stamp, "companies": cards})
 
-    # announcements
+    # 3. announcements
     items = []
-    for cat in ("Company Update", "Corp. Action"):
-        for i in range(ANN_DAYS):
-            d = TODAY - dt.timedelta(days=i)
-            try:
-                for x in bse_get(cat, ymd(d), ymd(d)):
-                    r = row(x)
-                    items.append({"date": r["date"], "c": r["name"], "k": kind(r["head"] + " " + r["sub"]),
-                                  "t": r["sub"] or "Announcement", "s": r["head"][:160], "u": r["pdf"]})
-            except Exception as e:
-                warns.append(f"{cat} {d}: {e}")
+    try:
+        ann = nse_get("/api/corporate-announcements", {"index": "equities"})
+        for x in ann if isinstance(ann, list) else []:
+            desc = (x.get("desc") or "").strip()
+            d = parse_date(x.get("sort_date") or x.get("an_dt") or "")
+            items.append({"date": d or TODAY, "c": (x.get("companyName") or x.get("symbol") or "").strip(),
+                          "k": kind(desc + " " + (x.get("attchmntText") or "")[:200]),
+                          "t": desc or "Announcement", "s": (x.get("attchmntText") or "")[:160],
+                          "u": x.get("attchmntFile") or ""})
+    except Exception as e:
+        warns.append(f"Announcements: {e}")
     items.sort(key=lambda a: a["date"], reverse=True)
     out = []
     for a in items[:MAX_ANN]:
-        try: lab = "Today" if a["date"] == str(TODAY) else dt.date.fromisoformat(a["date"]).strftime("%d %B %Y").lstrip("0")
-        except Exception: lab = a["date"]
+        lab = "Today" if a["date"] == TODAY else a["date"].strftime("%d %B %Y").lstrip("0")
         out.append({"d": lab, "c": a["c"], "k": a["k"], "t": a["t"], "s": a["s"], "u": a["u"]})
 
-    # upcoming results from board meeting intimations
-    up = {}
-    for i in range(10):
-        d = TODAY - dt.timedelta(days=i)
-        try:
-            for x in bse_get("Board Meeting", ymd(d), ymd(d)):
-                r = row(x); text = r["head"] + " " + r["sub"]
-                if "result" not in text.lower(): continue
-                fut = sorted(z for z in find_dates(text) if z >= TODAY)
-                if fut: up[(r["name"], fut[0])] = [fut[0].strftime("%a, %d %b"), r["name"], "Result"]
-        except Exception as e:
-            warns.append(f"Board {d}: {e}")
-    upcoming = [v for k, v in sorted(up.items(), key=lambda kv: kv[0][1])][:40]
+    # 4. upcoming result meetings (NSE event calendar)
+    upcoming = []
+    try:
+        ev = nse_get("/api/event-calendar", {"index": "equities"})
+        for x in ev if isinstance(ev, list) else []:
+            purpose = (x.get("purpose") or x.get("bm_desc") or "")
+            if "result" not in purpose.lower(): continue
+            d = parse_date(x.get("date") or "")
+            if d and d >= TODAY:
+                upcoming.append((d, [d.strftime("%a, %d %b"), (x.get("company") or x.get("symbol") or "").strip(), "Result"]))
+    except Exception as e:
+        warns.append(f"Event calendar: {e}")
+    upcoming = [v for d, v in sorted(upcoming, key=lambda t: t[0])][:40]
     if out or upcoming:
         old = load("announcements.json", {"items": [], "upcoming": []})
         save("announcements.json", {"upcoming": upcoming or old.get("upcoming", []), "items": out or old.get("items", [])})
@@ -224,4 +200,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-         
+                
