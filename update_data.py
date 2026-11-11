@@ -133,14 +133,19 @@ def main():
     elif isinstance(rows, dict):
         print("DEBUG dict keys:", list(rows.keys())[:20])
     latest = {}
-    cutoff = TODAY - dt.timedelta(days=RESULT_DAYS)
-    for x in rows if isinstance(rows, list) else []:
+    def _key(x):
+        try:
+            return dt.datetime.strptime((x.get("broadCastDate") or "")[:20], "%d-%b-%Y %H:%M:%S")
+        except Exception:
+            return dt.datetime.min
+    rows_sorted = sorted(rows if isinstance(rows, list) else [], key=_key, reverse=True)
+    for x in rows_sorted:
         sym = (x.get("symbol") or "").strip()
+        if not sym or sym in latest: continue
         rd = parse_date(x.get("broadCastDate") or x.get("toDate") or "")
-        if not sym or (rd and rd < cutoff): continue
-        if sym not in latest:
-            latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(), "rd": rd,
-                           "u": x.get("attchmntFile") or ""}
+        latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(), "rd": rd,
+                       "u": x.get("resultDetailedDataLink") or x.get("attchmntFile") or ""}
+    print("DEBUG latest count:", len(latest), "| newest:", rows_sorted[0].get("broadCastDate") if rows_sorted else "-")
     for r in list(latest.values())[:MAX_RESULT_CARDS]:
         try:
             card = fetch_result(r["sym"] + ".NS", r["name"], r["rd"])
@@ -206,4 +211,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+        
