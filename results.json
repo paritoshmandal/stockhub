@@ -1,7 +1,31 @@
 {
  "cols": [],
- "updated": "11 Nov 2026, 08:47 PM IST",
+ "updated": "11 Nov 2026, 09:18 PM IST",
  "companies": [
+  {
+   "n": "HINDCOPPER",
+   "p": 436.35,
+   "m": 42196,
+   "pe": 37.2,
+   "u": "https://nsearchives.nseindia.com/corporate/HINDCOPPERMKD_11112026210701_outcome11112026.pdf",
+   "rd": "2026-11-11"
+  },
+  {
+   "n": "SICALLOG",
+   "p": 77.8,
+   "m": 621,
+   "pe": 8.8,
+   "u": "https://nsearchives.nseindia.com/corporate/SICALLOG_11112026205658_OUTCOME.pdf",
+   "rd": "2026-11-11"
+  },
+  {
+   "n": "LALITHAA",
+   "p": 370.0,
+   "m": 20709,
+   "pe": 21.7,
+   "u": "https://nsearchives.nseindia.com/corporate/LALITHAAJEWELLERY1985_11112026205003_Outcome_of_the_Board_Meeting_Signed.pdf",
+   "rd": "2026-11-11"
+  },
   {
    "n": "AFSL",
    "p": 204.28,
@@ -862,7 +886,7 @@
    "n": "VINNY",
    "p": 0.98,
    "m": 46,
-   "pe": 98.0,
+   "pe": 49.0,
    "u": "https://nsearchives.nseindia.com/corporate/VINNY_07112026134853_outcome_of_BM.pdf",
    "rd": "2026-11-07"
   },

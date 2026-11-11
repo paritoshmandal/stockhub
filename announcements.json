@@ -204,6 +204,118 @@
  "items": [
   {
    "d": "Today",
+   "c": "SICALLOG",
+   "k": "Investor Meet",
+   "t": "Investor Presentation",
+   "s": "Sical Logistics Limited has informed the Exchange about Investor Presentation",
+   "u": "https://nsearchives.nseindia.com/corporate/SICALLOG_11112026211057_InvestorPresentation.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "PAKKA",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "PAKKA LIMITED has informed the Exchange about Transcript",
+   "u": "https://nsearchives.nseindia.com/corporate/yashpakka_11112026210944_Pakka_Transcript_Investor_Call_Q2_H1_FY2027_.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "HINDCOPPER",
+   "k": "Result",
+   "t": "Outcome of Board Meeting",
+   "s": "Hindustan Copper Limited has submitted to the Exchange, the financial results for the period ended September 30, 2026.",
+   "u": "https://nsearchives.nseindia.com/corporate/HINDCOPPERMKD_11112026210701_outcome11112026.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "INTENTECH",
+   "k": "Other",
+   "t": "Press Release",
+   "s": "Intense Technologies Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"Intense Technologies Limited has informed the ",
+   "u": "https://nsearchives.nseindia.com/corporate/INTENTECH_11112026210517_Pressrelease_signed.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "SOUTHWEST",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "South West Pinnacle Exploration Limited has informed the Exchange about Link of Recording",
+   "u": "https://nsearchives.nseindia.com/corporate/SOUTHWEST_11112026210409_intimation.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "SICALLOG",
+   "k": "Other",
+   "t": "Outcome of Board Meeting",
+   "s": "Sical Logistics Limited (\"Company\") has informed the exchange that the board of directors of the Company at its meeting held on November 11, 2026, has considere",
+   "u": "https://nsearchives.nseindia.com/corporate/SICALLOG_11112026205658_OUTCOME.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "EMBDL",
+   "k": "Other",
+   "t": "Updates",
+   "s": "Disclosure regarding release and re-creation of pledge over equity shares of the Company by Promoter Group entities   No incremental pledge or borrowing by the ",
+   "u": "https://nsearchives.nseindia.com/corporate/EMBDL_11112026205804_EDL_7_2__PIT_Disclosure_Final.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "PPAP",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "PPAP Automotive Limited has informed the Exchange about Presentation and Link of Recording",
+   "u": "https://nsearchives.nseindia.com/corporate/PPAP_11112026205737_Outcome_-_Earnings_Call_-_Q2FY27_-_Copy.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "LALITHAA",
+   "k": "Other",
+   "t": "Monitoring Agency Report",
+   "s": "monitoring agency report",
+   "u": "https://nsearchives.nseindia.com/corporate/LALITHAAJEWELLERY1985_11112026205553_Lalithaa_monitoring_agency_report_Signed.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "LALITHAA",
+   "k": "Other",
+   "t": "Statement of deviation(s) or variation(s) under Reg. 32",
+   "s": "Lalithaa Jewellery Mart Limited has informed the Exchange about statement of deviation(s) or variation(s) under Reg. 32",
+   "u": "https://nsearchives.nseindia.com/corporate/LALITHAAJEWELLERY1985_11112026205617_STATEMENT_OF_DEVIATION_OR_VARIATION_SIGNED.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "AUBANK",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "AU Small Finance Bank Limited has informed the Exchange about Schedule of meet",
+   "u": "https://nsearchives.nseindia.com/corporate/AUBANK_11112026205434_Investor_Meet_Intimation.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "LALITHAA",
+   "k": "Result",
+   "t": "Outcome of Board Meeting",
+   "s": "Lalithaa Jewellery Mart Limited has submitted to the Exchange, the financial results for the period ended September 30, 2026.",
+   "u": "https://nsearchives.nseindia.com/corporate/LALITHAAJEWELLERY1985_11112026205003_Outcome_of_the_Board_Meeting_Signed.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "ORTINGLOBE",
+   "k": "Other",
+   "t": "Resignation of Statutory Auditor",
+   "s": "ORTIN GLOBAL LIMITED has informed the Exchange about Resignation of Statutory Auditor",
+   "u": "https://nsearchives.nseindia.com/corporate/ORTINGLOBE_ROSA_104624_KMP_Doc.zip"
+  },
+  {
+   "d": "Today",
+   "c": "SATIN",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Satin Creditcare Network Limited has informed the Exchange about Schedule of meet",
+   "u": "https://nsearchives.nseindia.com/corporate/SATIN_11112026204524_Intimation.pdf"
+  },
+  {
+   "d": "Today",
    "c": "MONEYVIEW",
    "k": "Earnings Call",
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
@@ -2489,118 +2601,6 @@
    "t": "Press Release",
    "s": "Cyient Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"Press Release\".",
    "u": "https://nsearchives.nseindia.com/corporate/CYIENT_11112026152942_11112026_PRSigned.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "AMAGI",
-   "k": "Other",
-   "t": "Resignation of Director/KMP/SMP",
-   "s": "Amagi Media Labs Limited has informed the Exchange about Resignation of Director/KMP/SMP",
-   "u": "https://nsearchives.nseindia.com/corporate/AMAGI_ROID_104566_KMP_Doc.zip"
-  },
-  {
-   "d": "Today",
-   "c": "INDOMIM",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Intimation of an earnings conference call for the quarter and half year ended 30th September 2026 under Regulation 30 of the SEBI (Listing Obligations and Discl",
-   "u": "https://nsearchives.nseindia.com/corporate/INDOMIM_11112026152816_INDO-MIM_-_Intimation_of_Investor_Call_-_11-11-2026.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "POLYMED",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Poly Medicure Limited has informed the Exchange about Transcript of Earning Call held on  05th November, 2026",
-   "u": "https://nsearchives.nseindia.com/corporate/POLYMED_11112026152544_INTIMATION_TRANSCRIPT_SIGNED.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "COCHINSHIP",
-   "k": "Other",
-   "t": "Copy of Newspaper Publication",
-   "s": "Cochin Shipyard Limited has informed the Exchange about Copy of Newspaper Publication",
-   "u": "https://nsearchives.nseindia.com/corporate/Aswi4739_11112026152612_SE_Intimation_Newspaper_Ad_Sgd.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "MAXIND",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Max India Limited has informed the Exchange about Transcript",
-   "u": "https://nsearchives.nseindia.com/corporate/MAXIND_11112026152243_maxindiaq2fy27transcript.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "LORDSCHLO",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Lords Chloro Alkali Limited has informed the Exchange about Transcript",
-   "u": "https://nsearchives.nseindia.com/corporate/LCAL_11112026152244_Transcript_of_earning.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "AEQUS",
-   "k": "Result",
-   "t": "Updates",
-   "s": "Aequs Limited has informed the Exchange regarding, submission of financial results for the quarter and half year ended September 30, 2026, in Machine Readable F",
-   "u": "https://nsearchives.nseindia.com/corporate/AEQUSLIMITED_11112026151827_Intimation_Update.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "STANLEY",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Intimation of Schedule of Earnings Call",
-   "u": "https://nsearchives.nseindia.com/corporate/STANLEY2023_11112026151638_Intimation.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "RAYMONDLSL",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Raymond Lifestyle Limited has informed the Exchange about Schedule of meet",
-   "u": "https://nsearchives.nseindia.com/corporate/RLL_11112026151834_RLLInvestorConferenceIntimationsd.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "UNITEDTEA",
-   "k": "Result",
-   "t": "Copy of Newspaper Publication",
-   "s": "UNITEDTEA: The United Nilgiri Tea Estates Company Limited has informed the Exchange about Copy of Newspaper Publication concerning declaration of unaudited fina",
-   "u": "https://nsearchives.nseindia.com/corporate/kpsarathy_11112026151711_Newspaper_intimation.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "KANSAINER",
-   "k": "Other",
-   "t": "General Updates",
-   "s": "Kansai Nerolac Paints Limited has informed the Exchange about proposal for further investment in Kansai Nerolac Paints (Bangladesh) Limited, Bangladesh subsidia",
-   "u": "https://nsearchives.nseindia.com/corporate/KANSAINER_11112026151432_SE_Further_investment_-_Bangladeshsigned_.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "UTKARSHBNK",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Utkarsh Small Finance Bank Limited has informed the Exchange about Transcript of earnings call held on November 04, 2026.",
-   "u": "https://nsearchives.nseindia.com/corporate/UTKARSHBANK_11112026151543_intimationtranscriptofearningscall.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "MILKYMIST",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Milky Mist Dairy Food Limited has informed the Exchange about Schedule of meet",
-   "u": "https://nsearchives.nseindia.com/corporate/MILKYMIST_11112026151601_intimationonjpmorganconference20112026.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "UNOMINDA",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "UNO Minda Limited has informed the Exchange about Transcript of Earnings Call held on November 05, 2026",
-   "u": "https://nsearchives.nseindia.com/corporate/MINDAIND1_11112026151509_Intimationcovering_transcript.pdf"
   }
  ]
 }
