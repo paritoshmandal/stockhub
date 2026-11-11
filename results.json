@@ -1,7 +1,31 @@
 {
  "cols": [],
- "updated": "11 Nov 2026, 09:18 PM IST",
+ "updated": "12 Nov 2026, 12:21 AM IST",
  "companies": [
+  {
+   "n": "SRGHFL",
+   "p": 103.97,
+   "m": 163,
+   "pe": 4.8,
+   "u": "https://nsearchives.nseindia.com/corporate/SRGHOUSING_11112026235000_Delay_in_financial_results_300926.pdf",
+   "rd": "2026-11-11"
+  },
+  {
+   "n": "TERASOFT",
+   "p": 308.4,
+   "m": 386,
+   "pe": 15.6,
+   "u": "https://nsearchives.nseindia.com/corporate/TERASOFT_11112026212704_OutcomeBMResults30092026.pdf",
+   "rd": "2026-11-11"
+  },
+  {
+   "n": "ORTINGLOBE",
+   "p": 13.97,
+   "m": 11,
+   "pe": null,
+   "u": "https://nsearchives.nseindia.com/corporate/ORTINLAB_11112026211550_OUTCOME.pdf",
+   "rd": "2026-11-11"
+  },
   {
    "n": "HINDCOPPER",
    "p": 436.35,
@@ -413,7 +437,7 @@
   {
    "n": "MMTC",
    "p": 54.21,
-   "m": 8131,
+   "m": 8132,
    "pe": 18.2,
    "u": "https://nsearchives.nseindia.com/corporate/ajaymisra_10112026191813_final__2_.pdf",
    "rd": "2026-11-10"
@@ -694,422 +718,6 @@
    "pe": 8.7,
    "u": "https://nsearchives.nseindia.com/corporate/RMDRIP_09112026144600_Outcome.pdf",
    "rd": "2026-11-09"
-  },
-  {
-   "n": "EIFFL",
-   "p": 247.0,
-   "m": 613,
-   "pe": 113.8,
-   "u": "https://nsearchives.nseindia.com/corporate/EIFFL_07112026202042_Outcome_of_Board_Meeting_Financial_Result.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "ACCURACY",
-   "p": 4.13,
-   "m": 62,
-   "pe": 15.9,
-   "u": "https://nsearchives.nseindia.com/corporate/ACCURACY_07112026184149_OutcomeOfBM07Nov2026.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "AIROLAM",
-   "p": 109.65,
-   "m": 164,
-   "pe": 31.3,
-   "u": "https://nsearchives.nseindia.com/corporate/AIROLAM_07112026180529_Final_Result.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "BROOKS",
-   "p": 67.14,
-   "m": 198,
-   "pe": 15.0,
-   "u": "https://nsearchives.nseindia.com/corporate/BROOKS_07112026175721_00_SEI_BM_Outome_and_FR_2026_09.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "TATACHEM",
-   "p": 607.85,
-   "m": 15485,
-   "pe": null,
-   "u": "https://nsearchives.nseindia.com/corporate/TATACHEMYS_07112026171022_1TCLOutcomeofBM07112026foruploadsigned.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "PROSTARM",
-   "p": 131.76,
-   "m": 776,
-   "pe": 20.9,
-   "u": "https://nsearchives.nseindia.com/corporate/PROSTARM_07112026165738_SE_Outcome_NSE.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "AASTHA",
-   "p": 25.99,
-   "m": 229,
-   "pe": 9.7,
-   "u": "https://nsearchives.nseindia.com/corporate/9081535400_07112026165636_Final_Board_Meeting_outcome.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "SUPRAJIT",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    1135.1,
-    1069.6,
-    941.0
-   ],
-   "e": [
-    142.5,
-    132.9,
-    134.3
-   ],
-   "np": [
-    53.4,
-    52.2,
-    50.9
-   ],
-   "eps": [
-    3.89,
-    3.8,
-    3.71
-   ],
-   "p": 463.85,
-   "m": 6363,
-   "pe": 34.1,
-   "u": "https://nsearchives.nseindia.com/corporate/SUPRAJIT_07112026162042_OutcomeoftheBoardMeeting07Nov2026.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "NAGREEKEXP",
-   "p": 21.31,
-   "m": 67,
-   "pe": 20.9,
-   "u": "https://nsearchives.nseindia.com/corporate/NAGREEKEXP_07112026154252_Outcome_sd_ocr.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "SPECTRUM",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    198.4,
-    154.6,
-    117.7
-   ],
-   "e": [
-    39.0,
-    26.2,
-    17.4
-   ],
-   "np": [
-    18.1,
-    13.0,
-    7.7
-   ],
-   "eps": [
-    11.23,
-    8.31,
-    4.93
-   ],
-   "p": 4443.2,
-   "m": 7592,
-   "pe": 104.1,
-   "u": "https://nsearchives.nseindia.com/corporate/SPECTRUM_07112026143218_SPECTRUM_Unaudited_Finacial_Results_30092026.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "SURYAROSNI",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    2448.5,
-    2046.5,
-    1845.2
-   ],
-   "e": [
-    142.8,
-    120.3,
-    140.8
-   ],
-   "np": [
-    76.7,
-    59.6,
-    74.2
-   ],
-   "eps": [
-    3.52,
-    2.74,
-    3.41
-   ],
-   "p": 211.7,
-   "m": 4607,
-   "pe": 14.7,
-   "u": "https://nsearchives.nseindia.com/corporate/SURYAROSNI_07112026143538_Q2FY27_Unaudited_Results_07112026_Signed.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "SCPL",
-   "p": 644.9,
-   "m": 677,
-   "pe": 32.6,
-   "u": "https://nsearchives.nseindia.com/corporate/SCPLCO_07112026141127_Financial_Results_ocred.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "SRPL",
-   "p": 0.34,
-   "m": 7,
-   "pe": null,
-   "u": "https://nsearchives.nseindia.com/corporate/SRPL_07112026140004_signedoutcome07112026.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "HERANBA",
-   "p": 153.79,
-   "m": 615,
-   "pe": null,
-   "u": "https://nsearchives.nseindia.com/corporate/HERANBA_07112026135409_Outcome_HIL_Final_to_Upload.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "VINNY",
-   "p": 0.98,
-   "m": 46,
-   "pe": 49.0,
-   "u": "https://nsearchives.nseindia.com/corporate/VINNY_07112026134853_outcome_of_BM.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "ANDHRSUGAR",
-   "p": 82.1,
-   "m": 1113,
-   "pe": 10.7,
-   "u": "https://nsearchives.nseindia.com/corporate/ANDHRSUGAR_07112026135038_Financialresults.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "FINCABLES",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    2269.3,
-    2013.2,
-    1375.8
-   ],
-   "e": [
-    379.9,
-    336.5,
-    220.7
-   ],
-   "np": [
-    272.9,
-    249.0,
-    162.6
-   ],
-   "eps": [
-    17.85,
-    16.28,
-    10.63
-   ],
-   "p": 1225.4,
-   "m": 18741,
-   "pe": 20.6,
-   "u": "https://nsearchives.nseindia.com/corporate/FINCABLES_07112026134619_BMQuickResultsFSigned.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "HBLENGINE",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    871.6,
-    638.0,
-    1222.9
-   ],
-   "e": [
-    265.1,
-    167.3,
-    536.0
-   ],
-   "np": [
-    192.5,
-    109.1,
-    387.3
-   ],
-   "eps": [
-    6.95,
-    3.95,
-    13.96
-   ],
-   "p": 806.3,
-   "m": 22350,
-   "pe": 38.1,
-   "u": "https://nsearchives.nseindia.com/corporate/HBLPOWER_07112026133148_Outcomeandfinancialresults.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "MAMATA",
-   "p": 352.2,
-   "m": 867,
-   "pe": 97.0,
-   "u": "https://nsearchives.nseindia.com/corporate/MAMATA_07112026132749_MML_BM_outcome_07112026-final.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "MICEL",
-   "p": 39.78,
-   "m": 1185,
-   "pe": null,
-   "u": "https://nsearchives.nseindia.com/corporate/MICEL_07112026130656_MIC_Q2_Results_merged.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "TATASTEEL",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    64974.0,
-    60411.8,
-    58216.0
-   ],
-   "e": [
-    11242.3,
-    9247.7,
-    8890.4
-   ],
-   "np": [
-    3666.4,
-    2318.3,
-    3101.8
-   ],
-   "eps": [
-    2.94,
-    1.86,
-    2.49
-   ],
-   "p": 189.28,
-   "m": 236067,
-   "pe": 20.4,
-   "u": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026130531_BOARDOUTCOME-NOV7.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "REMSONSIND",
-   "p": 91.34,
-   "m": 320,
-   "pe": 18.5,
-   "u": "https://nsearchives.nseindia.com/corporate/REMSONSIND_07112026125535_Outcome.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "GOLDIAM",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Sep 2025"
-   ],
-   "s": [
-    274.0,
-    326.0,
-    192.8
-   ],
-   "e": [
-    73.6,
-    103.9,
-    47.4
-   ],
-   "np": [
-    49.4,
-    74.0,
-    31.4
-   ],
-   "eps": [
-    4.38,
-    4.91,
-    2.6
-   ],
-   "p": 317.15,
-   "m": 4775,
-   "pe": 17.7,
-   "u": "https://nsearchives.nseindia.com/corporate/GOLDIAM_07112026125359_Outcome_of_BM-7-11-26.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "MUKKA",
-   "p": 27.17,
-   "m": 815,
-   "pe": 11.8,
-   "u": "https://nsearchives.nseindia.com/corporate/MUKKA_07112026125014_Outcome_of_Board_Meeting_Q2_final.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "MAWANASUG",
-   "p": 145.87,
-   "m": 571,
-   "pe": 20.7,
-   "u": "https://nsearchives.nseindia.com/corporate/MAWANASUG_07112026123734_OutcomeofBMResult.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "DCMSRIND",
-   "p": 58.18,
-   "m": 506,
-   "pe": 19.5,
-   "u": "https://nsearchives.nseindia.com/corporate/DCMSRIND_07112026121558_Outcome_Financials.pdf",
-   "rd": "2026-11-07"
-  },
-  {
-   "n": "DIVISLAB",
-   "cols": [
-    "Sep 2026",
-    "Jun 2026",
-    "Jun 2025"
-   ],
-   "s": [
-    3676.0,
-    3080.0,
-    2410.0
-   ],
-   "e": [
-    1660.0,
-    1319.0,
-    848.0
-   ],
-   "np": [
-    1127.0,
-    902.0,
-    545.0
-   ],
-   "eps": [
-    42.49,
-    33.95,
-    20.49
-   ],
-   "p": 11367.0,
-   "m": 301758,
-   "pe": 89.7,
-   "u": "https://nsearchives.nseindia.com/corporate/DIVISLAB_07112026115520_Outcome_BoardMeeting_07112026_DivisLabs.pdf",
-   "rd": "2026-11-07"
   }
  ]
 }
