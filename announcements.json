@@ -204,6 +204,14 @@
  "items": [
   {
    "d": "Today",
+   "c": "MONEYVIEW",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Transcript of Earnings Conference Call for Q2 and H1 FY27",
+   "u": "https://nsearchives.nseindia.com/corporate/9916600823_11112026203811_SEIntimationTranscript.pdf"
+  },
+  {
+   "d": "Today",
    "c": "CUPID",
    "k": "Investor Meet",
    "t": "General Updates",
@@ -2593,14 +2601,6 @@
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
    "s": "UNO Minda Limited has informed the Exchange about Transcript of Earnings Call held on November 05, 2026",
    "u": "https://nsearchives.nseindia.com/corporate/MINDAIND1_11112026151509_Intimationcovering_transcript.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TVSMOTOR",
-   "k": "Other",
-   "t": "Press Release",
-   "s": "TVS Motor Company Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"TVS MOTOR EXPANDS ITS GLOBAL PORTFOLIO WITH TVS C",
-   "u": "https://nsearchives.nseindia.com/corporate/TVSMOTOR_11112026151336_NSEBSECallisto110inturkey.pdf"
   }
  ]
 }
