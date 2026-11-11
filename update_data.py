@@ -1,4 +1,4 @@
-"""StockHub robot v2: all BSE companies.
+"""StockHub robot v3: all BSE companies, with a browser-like BSE session.
 - results.json: companies that announced results in the last 3 days (+ your watchlist), numbers from yfinance
 - announcements.json: latest company updates/corporate actions + upcoming result meetings
 Source: BSE public announcements API (unofficial; BSE may change it). Numbers: yfinance (unofficial)."""
@@ -10,10 +10,31 @@ NOW = dt.datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 TODAY = NOW.date()
 CR = 1e7
 RESULT_DAYS, MAX_RESULT_CARDS, ANN_DAYS, MAX_ANN = 3, 80, 2, 300
-H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36",
-     "Referer": "https://www.bseindia.com/", "Origin": "https://www.bseindia.com"}
 BASE = os.path.dirname(os.path.abspath(__file__))
 MON = {m: i + 1 for i, m in enumerate("jan feb mar apr may jun jul aug sep oct nov dec".split())}
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+
+SESSION = requests.Session()
+SESSION.headers.update({
+    "User-Agent": UA,
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://www.bseindia.com",
+    "Referer": "https://www.bseindia.com/corporates/ann.html",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+})
+
+def warmup():
+    """Visit BSE pages first so the server sets cookies, like a real browser."""
+    for url in ("https://www.bseindia.com/", "https://www.bseindia.com/corporates/ann.html"):
+        try:
+            r = SESSION.get(url, timeout=30, headers={"Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
+            print("warmup", url, r.status_code, len(SESSION.cookies), "cookies")
+        except Exception as e:
+            print("WARN warmup", url, e)
+        time.sleep(2)
 
 def load(name, default):
     try:
@@ -29,9 +50,16 @@ def save(name, obj):
 def bse_get(cat, d1, d2):
     url = ("https://api.bseindia.com/BseIndiaAPI/api/AnnGetData/w?strCat=" + quote_plus(cat) +
            f"&strPrevDate={d1}&strScrip=&strSearch=P&strToDate={d2}&strType=C")
-    r = requests.get(url, headers=H, timeout=40)
-    r.raise_for_status()
-    return r.json().get("Table", [])
+    last = None
+    for attempt in range(2):
+        try:
+            r = SESSION.get(url, timeout=40)
+            r.raise_for_status()
+            return r.json().get("Table", [])
+        except Exception as e:
+            last = e
+            time.sleep(3)
+    raise last
 
 def ymd(d): return d.strftime("%Y%m%d")
 
@@ -114,8 +142,10 @@ def fetch_result(ticker, name, rdate=None):
 
 def main():
     warns = []
+    warmup()
     comps = load("companies.json", [])
     cards, seen = [], set()
+
     # recent results, all companies
     latest = {}
     for i in range(RESULT_DAYS):
@@ -126,7 +156,6 @@ def main():
                 if r["code"] and r["code"] not in latest: latest[r["code"]] = r
         except Exception as e:
             warns.append(f"Result {d}: {e}")
-    watch = {c.get("bse"): c for c in comps if c.get("bse")}
     todo = list(latest.values())[:MAX_RESULT_CARDS]
     for r in todo:
         try: rd = dt.date.fromisoformat(r["date"])
@@ -138,6 +167,7 @@ def main():
         card["u"] = r["pdf"]; card["rd"] = r["date"]
         cards.append(card); seen.add(r["name"])
         time.sleep(0.5)
+
     # watchlist (always shown with numbers)
     for c in comps:
         if c.get("nse") and c["name"] not in seen:
@@ -152,6 +182,7 @@ def main():
     stamp = NOW.strftime("%d %b %Y, %I:%M %p IST")
     if cards:
         save("results.json", {"cols": [], "updated": stamp, "companies": cards})
+
     # announcements
     items = []
     for cat in ("Company Update", "Corp. Action"):
@@ -170,6 +201,7 @@ def main():
         try: lab = "Today" if a["date"] == str(TODAY) else dt.date.fromisoformat(a["date"]).strftime("%d %B %Y").lstrip("0")
         except Exception: lab = a["date"]
         out.append({"d": lab, "c": a["c"], "k": a["k"], "t": a["t"], "s": a["s"], "u": a["u"]})
+
     # upcoming results from board meeting intimations
     up = {}
     for i in range(10):
@@ -186,8 +218,10 @@ def main():
     if out or upcoming:
         old = load("announcements.json", {"items": [], "upcoming": []})
         save("announcements.json", {"upcoming": upcoming or old.get("upcoming", []), "items": out or old.get("items", [])})
+
     print("Updated:", stamp, "| result cards:", len(cards), "| announcements:", len(out), "| upcoming:", len(upcoming))
     for w in warns[:30]: print("WARN", w)
 
 if __name__ == "__main__":
     main()
+         
