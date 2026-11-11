@@ -1,93 +1,133 @@
-"""BSE result PDF theke Sales/EBIDT/Net profit/EPS ber kore (SEBI standard table)."""
-import io, re
+import json, time, datetime as dt
 import requests
-import pdfplumber
+from parse_pdf import parse_url
 
-MONTHS = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
-          7: "Jul", 8: "Aug", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"}
-QEND = {(30, 6), (30, 9), (31, 12), (31, 3)}
-NUM = re.compile(r"\(?-?\d[\d,]*\.?\d*\)?")
+API = "https://api.bseindia.com/BseIndiaAPI/api/"
+PDF = "https://www.bseindia.com/xml-data/corpfiling/AttachLive/"
+H = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36",
+    "Referer": "https://www.bseindia.com/",
+    "Origin": "https://www.bseindia.com",
+    "Accept": "application/json, text/plain, */*",
+}
+S = requests.Session()
+S.headers.update(H)
+IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
+NOW = dt.datetime.now(IST)
 
 
-def to_num(tok):
-    t = tok.strip()
-    neg = (t.startswith("(") and t.endswith(")")) or t.startswith("-")
+def get(path, params, tries=3):
+    for i in range(tries):
+        try:
+            r = S.get(API + path, params=params, timeout=30)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            print("retry", path, e)
+            time.sleep(3 * (i + 1))
+    return None
+
+
+def fmt(d):
+    return d.strftime("%Y%m%d")
+
+
+def ann_pages(cat, days, max_pages):
+    rows = []
+    for p in range(1, max_pages + 1):
+        j = get("AnnGetData/w", {
+            "strCat": cat, "strPrevDate": fmt(NOW - dt.timedelta(days=days)),
+            "strScrip": "", "strSearch": "P", "strToDate": fmt(NOW),
+            "strType": "C", "pageno": p,
+        })
+        t = (j or {}).get("Table") or []
+        if not t:
+            break
+        rows += t
+        time.sleep(1.2)
+    return rows
+
+
+def pdf_url(r):
+    a = (r.get("ATTACHMENTNAME") or "").strip()
+    return PDF + a if a else (r.get("NSURL") or "")
+
+
+def day(s):
+    return (s or "")[:10]
+
+
+# 1) Announcements (last 2 din)
+items = []
+for r in ann_pages("-1", 2, 25):
+    items.append({
+        "d": day(r.get("NEWS_DT")),
+        "c": r.get("SLONGNAME") or "",
+        "t": r.get("HEADLINE") or r.get("NEWSSUB") or "",
+        "k": r.get("CATEGORYNAME") or "",
+        "s": r.get("SUBCATNAME") or "",
+        "u": pdf_url(r),
+    })
+items.sort(key=lambda x: x["d"], reverse=True)
+
+# 2) Upcoming board meetings (porer 30 din)
+upcoming = []
+j = get("DefaultData/w", {
+    "Fdate": fmt(NOW), "TDate": fmt(NOW + dt.timedelta(days=30)),
+    "ddlcategorys": "E", "ddlindustrys": "", "scripcode": "",
+    "segment": "0", "strSearch": "S",
+})
+for r in (j if isinstance(j, list) else (j or {}).get("Table") or []):
+    name = r.get("Long_Name") or r.get("short_name") or ""
+    date = day(r.get("meeting_date") or r.get("Meeting_Date"))
+    purpose = (r.get("Purpose") or "").strip()
+    if name:
+        upcoming.append([date, name, purpose])
+upcoming.sort(key=lambda x: x[0])
+
+# 3) Results (last 30 din) + PDF theke numbers
+old = {}
+try:
+    for c in json.load(open("results.json", encoding="utf-8")).get("companies", []):
+        if c.get("u"):
+            old[c["u"]] = c
+except Exception:
+    pass
+
+seen = {}
+for r in ann_pages("Result", 30, 40):
+    name = r.get("SLONGNAME") or ""
+    d = day(r.get("NEWS_DT"))
+    if name and (name not in seen or d > seen[name]["d"]):
+        seen[name] = {"d": d, "n": name, "u": pdf_url(r)}
+companies = sorted(seen.values(), key=lambda x: x["d"], reverse=True)
+
+budget = 40  # ek run-e max 40 ti notun PDF parse
+for c in companies:
+    prev = old.get(c["u"])
+    if prev and prev.get("s"):
+        for k in ("cols", "s", "e", "np", "eps"):
+            if k in prev:
+                c[k] = prev[k]
+        continue
+    if budget <= 0 or not c["u"]:
+        continue
+    budget -= 1
     try:
-        v = float(t.strip("()-").replace(",", ""))
-    except ValueError:
-        return None
-    return -v if neg else v
+        res = parse_url(c["u"], S)
+        if res:
+            c.update(res)
+        else:
+            print("parse hoyni:", c["n"])
+    except Exception as e:
+        print("pdf fail:", c["n"], e)
+    time.sleep(1)
+for c in companies:
+    c.pop("d", None)
 
-
-def row(lines, pats, min_nums=3):
-    for p in pats:
-        rx = re.compile(p, re.I)
-        for ln in lines:
-            m = rx.search(ln)
-            if not m:
-                continue
-            nums = [to_num(x) for x in NUM.findall(ln[m.end():])]
-            nums = [n for n in nums if n is not None]
-            if len(nums) >= min_nums:
-                return nums[:3]
-    return None
-
-
-def unit_div(text):
-    t = text[:4000].lower()
-    if "crore" in t:
-        return 1.0
-    if "lakh" in t or "lacs" in t or "lac)" in t:
-        return 100.0
-    if "million" in t:
-        return 10.0
-    if "thousand" in t:
-        return 10000.0
-    return None
-
-
-def quarter_labels(text):
-    out = []
-    for d, m, y in re.findall(r"(\d{1,2})[./-](\d{1,2})[./-](\d{4})", text[:6000]):
-        d, m, y = int(d), int(m), int(y)
-        if (d, m) in QEND:
-            lab = "%s %d" % (MONTHS[m], y)
-            if lab not in out:
-                out.append(lab)
-        if len(out) == 3:
-            return out
-    return None
-
-
-def parse_text(text):
-    low = text.lower()
-    m = re.search(r"statement of (audited |unaudited )?consolidated|consolidated (audited |unaudited )?financial results", low)
-    body = text[m.start():] if m else text
-    lines = [l.strip() for l in body.splitlines() if l.strip()]
-    div = unit_div(text)
-    cols = quarter_labels(body) or quarter_labels(text)
-    if div is None or cols is None:
-        return None
-    sales = row(lines, [r"revenue from operations", r"total income"])
-    np_ = row(lines, [r"(net )?profit\s*(/\s*\(loss\)\s*)?(\(?after tax\)?\s*)?for the (period|quarter)",
-                      r"profit after tax", r"net profit.{0,20}after tax"])
-    eps = row(lines, [r"\bbasic\b"])
-    if not (sales and np_):
-        return None
-    pbt = row(lines, [r"profit.{0,40}before.{0,30}tax"])
-    fin = row(lines, [r"finance costs?"])
-    dep = row(lines, [r"depreciation"])
-    sc = lambda a: [round(x / div, 2) for x in a] if a else None
-    ebidt = None
-    if pbt and fin and dep:
-        ebidt = [round((pbt[i] + fin[i] + dep[i]) / div, 2) for i in range(3)]
-    return {"cols": cols, "s": sc(sales), "e": ebidt, "np": sc(np_), "eps": eps}
-
-
-def parse_url(url, session=None):
-    s = session or requests
-    r = s.get(url, timeout=60, headers={"Referer": "https://www.bseindia.com/"})
-    r.raise_for_status()
-    with pdfplumber.open(io.BytesIO(r.content)) as pdf:
-        text = "\n".join((p.extract_text() or "") for p in pdf.pages[:5])
-    return parse_text(text)
+stamp = NOW.strftime("%d %b %Y, %I:%M %p IST")
+json.dump({"updated": stamp, "companies": companies},
+          open("results.json", "w", encoding="utf-8"), ensure_ascii=False)
+json.dump({"updated": stamp, "items": items, "upcoming": upcoming},
+          open("announcements.json", "w", encoding="utf-8"), ensure_ascii=False)
+print(len(items), "ann,", len(upcoming), "upcoming,", len(companies), "results")
