@@ -175,9 +175,14 @@ def main():
         latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(), "rd": rd,
                        "u": x.get("resultDetailedDataLink") or x.get("attchmntFile") or ""}
     if not latest:
+        from collections import Counter
+        print("DEBUG desc counts:", Counter((x.get("desc") or "")[:35] for x in ann_raw).most_common(25))
+        def is_result(x):
+            d = (x.get("desc") or "").lower(); t = (x.get("attchmntText") or "").lower()
+            if "intimation" in d or "newspaper" in d: return False
+            return "result" in d or (d.startswith("outcome of board meeting") and "result" in t)
         for x in sorted(ann_raw, key=lambda x: str(x.get("sort_date") or x.get("an_dt") or ""), reverse=True):
-            desc = (x.get("desc") or "").lower()
-            if "result" not in desc or "intimation" in desc or "board meeting" in desc: continue
+            if not is_result(x): continue
             sym = (x.get("symbol") or "").strip()
             if not sym or sym in latest: continue
             latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(),
@@ -253,4 +258,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+            
