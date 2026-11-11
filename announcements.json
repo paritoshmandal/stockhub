@@ -204,6 +204,62 @@
  "items": [
   {
    "d": "Today",
+   "c": "CAPILLARY",
+   "k": "Earnings Call",
+   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
+   "s": "Capillary Technologies India Limited has informed the Exchange about Schedule of meet",
+   "u": "https://nsearchives.nseindia.com/corporate/CAPILLARY12_11112026194430_InvestorMeet.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "PVSL",
+   "k": "Investor Meet",
+   "t": "Investor Presentation",
+   "s": "Popular Vehicles and Services Limited has informed the Exchange about Investor Presentation",
+   "u": "https://nsearchives.nseindia.com/corporate/9072530155_11112026193957_DisclosureofInvestorPresentation_SD.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "NPST",
+   "k": "Investor Meet",
+   "t": "Investor Presentation",
+   "s": "Network People Services Technologies Limited has informed the Exchange about Investor Presentation",
+   "u": "https://nsearchives.nseindia.com/corporate/NPST_11112026194010_SE_Intimation_Investor_Presentation_30092026.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "REPCOHOME",
+   "k": "Other",
+   "t": "Updates",
+   "s": "Repco Home Finance Limited has informed the Exchange regarding 'revised Security Cover Certificate along with Covenant Compliance Certificate as on 30th Septemb",
+   "u": "https://nsearchives.nseindia.com/corporate/REPCOHOME_11112026193709_CovenantCompliance.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "ROTO",
+   "k": "Other",
+   "t": "Outcome of Board Meeting",
+   "s": "Roto Pumps Limited has informed the Exchange regarding Outcome of Board Meeting held on November 11, 2026.",
+   "u": "https://nsearchives.nseindia.com/corporate/ROTO_11112026193647_SE_Intimation_Outcome.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "ROTO",
+   "k": "Result",
+   "t": "Outcome of Board Meeting",
+   "s": "Roto Pumps Limited has submitted to the Exchange, the financial results for the second quarter and half year ended September 30, 2026.",
+   "u": "https://nsearchives.nseindia.com/corporate/ROTO_11112026193318_SE_Intimation_Results.pdf"
+  },
+  {
+   "d": "Today",
+   "c": "PVSL",
+   "k": "Other",
+   "t": "General Updates",
+   "s": "Popular Vehicles and Services Limited has informed the Exchange about General Updates: Pursuant to Regulation 30 read with Regulation 24(1) of the Securities an",
+   "u": "https://nsearchives.nseindia.com/corporate/9072530155_11112026192702_AppointmentofindependentDirectorsSD.pdf"
+  },
+  {
+   "d": "Today",
    "c": "RAYMOND",
    "k": "Earnings Call",
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
@@ -305,62 +361,6 @@
    "t": "Updates",
    "s": "Tata Power Company Limited has informed the Exchange regarding 'Reg 30 Change in Management'.",
    "u": "https://nsearchives.nseindia.com/corporate/VPTPCL_11112026192204_Regulation_30_KMP.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "DCXINDIA",
-   "k": "Other",
-   "t": "Updates",
-   "s": "Dcx Systems Limited has informed the Exchange regarding 'Press Release'.",
-   "u": "https://nsearchives.nseindia.com/corporate/DCX_2022_11112026192132_Press_Release_Q2FY27.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TRITURBINE",
-   "k": "Investor Meet",
-   "t": "Press Release",
-   "s": "Triveni Turbine Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"Investors  brief for Q2 & H1 FY27 ended on Septembe",
-   "u": "https://nsearchives.nseindia.com/corporate/TRITURBINE_11112026192035_IntimationInvestorBrief_11112026_sd.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "AVALON",
-   "k": "Earnings Call",
-   "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
-   "s": "Avalon Technologies Limited has informed the Exchange about Schedule of meet",
-   "u": "https://nsearchives.nseindia.com/corporate/AVALON2022_11112026191451_InvestorMeet171126.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "PVSL",
-   "k": "Other",
-   "t": "Change in Management",
-   "s": "Pursuant to Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, the Board of Directors at its meeting held on 11th No",
-   "u": "https://nsearchives.nseindia.com/corporate/9072530155_11112026185712_ChangeInMgmt_Sd.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TSFINV",
-   "k": "Other",
-   "t": "Updates",
-   "s": "TSF INVESTMENTS LIMITED has informed the Exchange regarding 'Investments in debt instruments issued by Group Companies '.",
-   "u": "https://nsearchives.nseindia.com/corporate/SUNDARMHLD_11112026191308_sdTSFILUPDATES.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TSFINV",
-   "k": "Other",
-   "t": "Appointment",
-   "s": "TSF INVESTMENTS LIMITED has informed the Exchange regarding Appointment of  Dr R Raghuttama Rao as Non- Executive Independent Director of the company w.e.f. Nov",
-   "u": "https://nsearchives.nseindia.com/corporate/SUNDARMHLD_11112026190926_sdTSFILAPPOINTMENTOFID.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "CUPID",
-   "k": "Result",
-   "t": "Press Release",
-   "s": "Cupid Limited has informed the Exchange regarding a press release dated November 11, 2026, titled \"Press Release   Q2 and H1FY27 Financial Results\".",
-   "u": "https://nsearchives.nseindia.com/corporate/CUPID_11112026190931_SE_Intimation_PR_Q2H1FY27.pdf"
   }
  ]
 }
