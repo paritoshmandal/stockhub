@@ -8,7 +8,9 @@ import requests
 NOW = dt.datetime.utcnow() + dt.timedelta(hours=5, minutes=30)
 TODAY = NOW.date()
 CR = 1e7
-RESULT_DAYS, MAX_RESULT_CARDS, MAX_ANN = 3, 80, 300
+RESULT_DAYS, MAX_RESULT_CARDS, MAX_ANN, ANN_DAYS = 4, 120, 300, 2
+SHOW_WATCHLIST = False  # true korle companies.json-er company gulo results-e always dekhabe
+def dmy(d): return d.strftime("%d-%m-%Y")
 BASE = os.path.dirname(os.path.abspath(__file__))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
@@ -123,7 +125,8 @@ def main():
 
     # 1. recent results (NSE financial results list)
     try:
-        rows = nse_get("/api/corporates-financial-results", {"index": "equities", "period": "Quarterly"})
+        rows = nse_get("/api/corporates-financial-results", {"index": "equities", "period": "Quarterly",
+                       "from_date": dmy(TODAY - dt.timedelta(days=RESULT_DAYS)), "to_date": dmy(TODAY)})
     except Exception as e:
         rows = []; warns.append(f"Results list: {e}")
     print("DEBUG results type:", type(rows).__name__, "| count:", len(rows) if hasattr(rows, "__len__") else "-")
@@ -138,7 +141,12 @@ def main():
             return dt.datetime.strptime((x.get("broadCastDate") or "")[:20], "%d-%b-%Y %H:%M:%S")
         except Exception:
             return dt.datetime.min
-    rows_sorted = sorted(rows if isinstance(rows, list) else [], key=_key, reverse=True)
+    cutoff = dt.datetime.combine(TODAY - dt.timedelta(days=RESULT_DAYS), dt.time.min)
+    all_rows = rows if isinstance(rows, list) else []
+    rows_sorted = sorted([x for x in all_rows if _key(x) >= cutoff], key=_key, reverse=True)
+    if all_rows and not rows_sorted:
+        newest = max((_key(x) for x in all_rows), default=None)
+        warns.append(f"Results list has no rows from last {RESULT_DAYS} days (newest: {newest})")
     for x in rows_sorted:
         sym = (x.get("symbol") or "").strip()
         if not sym or sym in latest: continue
@@ -157,7 +165,7 @@ def main():
 
     # 2. watchlist (always shown)
     for c in comps:
-        if c.get("nse") and c["name"] not in seen:
+        if SHOW_WATCHLIST and c.get("nse") and c["name"] not in seen:
             try:
                 card = fetch_result(c["nse"] + ".NS", c["name"])
                 card["u"] = ""; card["rd"] = "Watchlist"
@@ -165,7 +173,7 @@ def main():
             except Exception as e:
                 warns.append(f"Watch {c['name']}: {e}")
             time.sleep(0.5)
-    cards.sort(key=lambda c: c.get("rd", ""), reverse=True)
+    cards.sort(key=lambda c: c.get("rd") if str(c.get("rd", ""))[:2] == "20" else "", reverse=True)
     stamp = NOW.strftime("%d %b %Y, %I:%M %p IST")
     if cards:
         save("results.json", {"cols": [], "updated": stamp, "companies": cards})
@@ -173,7 +181,8 @@ def main():
     # 3. announcements
     items = []
     try:
-        ann = nse_get("/api/corporate-announcements", {"index": "equities"})
+        ann = nse_get("/api/corporate-announcements", {"index": "equities",
+                      "from_date": dmy(TODAY - dt.timedelta(days=ANN_DAYS)), "to_date": dmy(TODAY)})
         for x in ann if isinstance(ann, list) else []:
             desc = (x.get("desc") or "").strip()
             d = parse_date(x.get("sort_date") or x.get("an_dt") or "")
@@ -192,7 +201,11 @@ def main():
     # 4. upcoming result meetings (NSE event calendar)
     upcoming = []
     try:
-        ev = nse_get("/api/event-calendar", {"index": "equities"})
+        try:
+            ev = nse_get("/api/event-calendar", {"index": "equities", "from_date": dmy(TODAY),
+                         "to_date": dmy(TODAY + dt.timedelta(days=30))})
+        except Exception:
+            ev = nse_get("/api/event-calendar", {"index": "equities"})
         for x in ev if isinstance(ev, list) else []:
             purpose = (x.get("purpose") or x.get("bm_desc") or "")
             if "result" not in purpose.lower(): continue
@@ -211,4 +224,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
+                                    
