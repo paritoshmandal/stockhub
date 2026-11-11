@@ -123,12 +123,33 @@ def main():
     comps = load("companies.json", [])
     cards, seen = [], set()
 
+    ann_raw = []
+    try:
+        a = nse_get("/api/corporate-announcements", {"index": "equities",
+                    "from_date": dmy(TODAY - dt.timedelta(days=RESULT_DAYS)), "to_date": dmy(TODAY)})
+        ann_raw = a if isinstance(a, list) else []
+    except Exception as e:
+        warns.append(f"Announcements: {e}")
+    print("DEBUG announcements fetched:", len(ann_raw))
+    print("DEBUG top desc:", sorted({(x.get("desc") or "")[:40] for x in ann_raw})[:15])
+
     # 1. recent results (NSE financial results list)
     try:
         rows = nse_get("/api/corporates-financial-results", {"index": "equities", "period": "Quarterly",
                        "from_date": dmy(TODAY - dt.timedelta(days=RESULT_DAYS)), "to_date": dmy(TODAY)})
     except Exception as e:
         rows = []; warns.append(f"Results list: {e}")
+    if isinstance(rows, list) and not rows:
+        for label, prm in (("30-day", {"index": "equities", "period": "Quarterly",
+                                       "from_date": dmy(TODAY - dt.timedelta(days=30)), "to_date": dmy(TODAY)}),
+                           ("no-period", {"index": "equities",
+                                          "from_date": dmy(TODAY - dt.timedelta(days=RESULT_DAYS)), "to_date": dmy(TODAY)})):
+            try:
+                rows = nse_get("/api/corporates-financial-results", prm)
+            except Exception as e:
+                rows = []; warns.append(f"Results {label}: {e}")
+            print("DEBUG results", label, "count:", len(rows) if isinstance(rows, list) else "-")
+            if isinstance(rows, list) and rows: break
     print("DEBUG results type:", type(rows).__name__, "| count:", len(rows) if hasattr(rows, "__len__") else "-")
     if isinstance(rows, list) and rows:
         print("DEBUG first row keys:", list(rows[0].keys())[:25])
@@ -153,6 +174,16 @@ def main():
         rd = parse_date(x.get("broadCastDate") or x.get("toDate") or "")
         latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(), "rd": rd,
                        "u": x.get("resultDetailedDataLink") or x.get("attchmntFile") or ""}
+    if not latest:
+        for x in sorted(ann_raw, key=lambda x: str(x.get("sort_date") or x.get("an_dt") or ""), reverse=True):
+            desc = (x.get("desc") or "").lower()
+            if "result" not in desc or "intimation" in desc or "board meeting" in desc: continue
+            sym = (x.get("symbol") or "").strip()
+            if not sym or sym in latest: continue
+            latest[sym] = {"sym": sym, "name": (x.get("companyName") or sym).strip(),
+                           "rd": parse_date(x.get("sort_date") or x.get("an_dt") or ""),
+                           "u": x.get("attchmntFile") or ""}
+        print("DEBUG fallback from announcements:", len(latest))
     print("DEBUG latest count:", len(latest), "| newest:", rows_sorted[0].get("broadCastDate") if rows_sorted else "-")
     for r in list(latest.values())[:MAX_RESULT_CARDS]:
         try:
@@ -181,9 +212,7 @@ def main():
     # 3. announcements
     items = []
     try:
-        ann = nse_get("/api/corporate-announcements", {"index": "equities",
-                      "from_date": dmy(TODAY - dt.timedelta(days=ANN_DAYS)), "to_date": dmy(TODAY)})
-        for x in ann if isinstance(ann, list) else []:
+        for x in ann_raw:
             desc = (x.get("desc") or "").strip()
             d = parse_date(x.get("sort_date") or x.get("an_dt") or "")
             items.append({"date": d or TODAY, "c": (x.get("companyName") or x.get("symbol") or "").strip(),
@@ -224,4 +253,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-                                    
+    
