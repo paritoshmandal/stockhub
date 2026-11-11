@@ -204,6 +204,14 @@
  "items": [
   {
    "d": "Today",
+   "c": "GULFPETRO",
+   "k": "Other",
+   "t": "Agreements",
+   "s": "GP Petroleums Limited has informed the Exchange about the execution of Share Purchase Agreement with Incubit Pipavav Terminal Private Limited (IPTPL) and its se",
+   "u": "https://nsearchives.nseindia.com/corporate/GULFPETRO_11112026200642_IntimationSPAAcquisitionofSharesofIPTPLsigned.pdf"
+  },
+  {
+   "d": "Today",
    "c": "NRL",
    "k": "Earnings Call",
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
@@ -353,14 +361,6 @@
    "t": "Analysts/Institutional Investor Meet/Con. Call Updates",
    "s": "Intimation of Schedule of Analysts / Institutional Investors Meeting",
    "u": "https://nsearchives.nseindia.com/corporate/VATECH_11112026191937_SIJMFinancialIndiaXchange.pdf"
-  },
-  {
-   "d": "Today",
-   "c": "TATAINVEST",
-   "k": "Other",
-   "t": "Retirement",
-   "s": "Tata Investment Corporation Limited has informed the Exchange about Retirement of Mr. Noel N Tata as the Chairman",
-   "u": "https://nsearchives.nseindia.com/corporate/TATAINVEST_11112026192338_SE_Int_Directors_-_Final.pdf"
   }
  ]
 }
